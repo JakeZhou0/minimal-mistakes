@@ -2,6 +2,11 @@
    BASE ELEMENTS
    ========================================================================== */
 
+// body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+// margin: 0;
+// padding: 0;
+// }
+
 html {
   /* sticky footer fix */
   position: relative;
@@ -33,6 +38,33 @@ h6 {
   font-weight: bold;
 }
 
+/* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+  display: block;
+}
+
+/* HTML5 媒体文件跟 img 保持一致 */
+audio, canvas, video {
+  display: inline-block;
+}
+
+/* 要注意表单元素并不继承父级 font 的问题 */
+body, button, input, select, textarea {
+  font: 300 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/* 去掉各Table cell 的边距并让其边重合 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 h1 {
   margin-top: 0;
   font-size: $h-size-1;
@@ -58,6 +90,11 @@ h6 {
   font-size: $h-size-6;
 }
 
+/* 去除默认边框 */
+fieldset, img {
+  border: 0;
+}
+
 small,
 .small {
   font-size: $type-size-6;
@@ -80,6 +117,16 @@ del a {
   color: inherit;
 }
 
+/* 一致的 del 样式 */
+del {
+  text-decoration: line-through;
+}
+
+address, caption, cite, code, dfn, em, th, var {
+  font-style: normal;
+  font-weight: 400;
+}
+
 /* reduce orphans and widows when printing */
 
 p,
@@ -95,6 +142,14 @@ fieldset {
   widows: 3;
 }
 
+
+/* Firefox 以外，元素没有下划线，需添加 */
+acronym, abbr {
+  border-bottom: 1px dotted;
+  font-variant: normal;
+  text-decoration: none;
+}
+
 /* abbreviations */
 
 abbr[title],
@@ -102,6 +157,11 @@ abbr[data-original-title] {
   text-decoration: none;
   cursor: help;
   border-bottom: 1px dotted $text-color;
+}
+
+/* 去掉列表前的标识, li 会继承，大部分网站通常用列表来很多内容，所以应该当去 */
+ul, ol {
+  list-style: none;
 }
 
 /* blockquotes */
@@ -123,7 +183,39 @@ blockquote {
   }
 }
 
+/* 对齐是排版最重要的因素, 别让什么都居中 */
+caption, th {
+  text-align: left;
+}
+
+q:before, q:after {
+  content: '';
+}
+
+/* 统一上标和下标 */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+}
+
+:root sub, :root sup {
+  vertical-align: baseline; /* for ie9 and other modern browsers */
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
 /* links */
+
+a {
+  color: #1abc9c;
+}
 
 a {
   &:focus {
